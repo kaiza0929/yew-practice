@@ -4,6 +4,8 @@
 (pkgディレクトリはstaticディレクトリに置き換えて読む)<br>
 ・https://nulab.com/ja/blog/nulab/rust-yew-webassembly-kanban-app/<br>
 (main.rsはlib.rsに置き換えて読む)<br>
+・https://dev.to/fllstck/basic-interactions-with-yew-3pa3<br>
 メモ<br>
 ・WebAssembly(略してwasm).. ブラウザが実行できるバイナリ形式のアセンブリ言語<br>
 ・Yew.. WebAssemblyに対応したRustのフロントエンドフレームワーク<br>
+・wasm-pack build --target web --out-name wasm --out-dir ./static<br>
