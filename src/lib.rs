@@ -1,3 +1,6 @@
+/* この記述がコードの先頭(コメントを除く)にないとhtmlの属性を付けられない(コンパイルエラーになる) */
+#![recursion_limit="256"]
+
 use yew::prelude::*;
 use wasm_bindgen::prelude::*;
 
@@ -7,7 +10,7 @@ pub struct Model {
     keyword: String
 }
 
-/* 列挙型 どちらかの値をとる */
+/* 列挙型 どれかの値をとる */
 pub enum Msg {
     Add,
     Reset,
@@ -31,22 +34,24 @@ impl Component for Model {
         /* htmlの記述を宣言 */
         html! {
             <div>
-                <input type="button" value="カウントアップ" onclick=self.link.callback(|_| Msg::Add) />
+                <input type="button" class="btn btn-primary" value="カウントアップ" onclick=self.link.callback(|_| Msg::Add) />
                 <input type="button" value="リセット" onclick=self.link.callback(|_| Msg::Reset) />
+                /* 直接self.keywordを呼び出すとエラー(変数の束縛?) */
                 <input type="text" value={self.keyword.clone()} oninput=self.link.callback(|e: InputData| Msg::Input {keyword: e.value}) />
                 <p>{self.count}</p>
-                /* 直接self.keywordだとエラー */
                 <p>{self.keyword.clone()}</p>
             </div>
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
+        /* reduxのreducerのようなもの */
         match msg {
-            Msg::Add => self.count += 1, /* msg == ADDの場合 */
-            Msg::Reset => self.count = 0, /* msg == RESETの場合 */
+            Msg::Add => self.count += 1,
+            Msg::Reset => self.count = 0, 
             Msg::Input { keyword } => self.keyword = keyword
         }
+        /* 返り値 */
         true
     }
 

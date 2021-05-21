@@ -25,21 +25,6 @@ fn main() {
     /* 関数の呼び出し */
     fizz_buzz(50);
 
-    /* 構造体 */
-    /*
-    struct User<'a> {
-        name: &'a str,
-        age: &'a i32
-    }
-
-    let user_1 = User {
-        name: "山田太郎",
-        age: 24
-    };
-
-    println!("{}", user_1);
-    */
-
 }
 
 fn fizz_buzz(max_num: i32) {
